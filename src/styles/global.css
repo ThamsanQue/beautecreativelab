@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-feature-settings: "salt" 1, "ss01" 1, "ss02" 1, "ss03" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-primary;
+  }
+}
+
+@layer components {
+  .heading-xl {
+    @apply text-[clamp(2.5rem,8vw,5.5rem)] leading-[0.9] tracking-[-0.02em] font-light;
+  }
+
+  .heading-lg {
+    @apply text-[clamp(2rem,6vw,4rem)] leading-[0.9] tracking-[-0.02em] font-light;
+  }
+
+  .body-text {
+    @apply text-base leading-relaxed text-secondary;
+  }
+}
+
+.image-hover {
+  transition: transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.image-hover:hover {
+  transform: scale(1.03);
+}

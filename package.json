@@ -10,8 +10,27 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^4.16.9",
     "@astrojs/check": "^0.9.4",
+    "@astrojs/image": "^0.18.0",
+    "@astrojs/react": "^3.6.2",
+    "@astrojs/tailwind": "^5.1.2",
+    "@iconify-json/lucide": "^1.2.11",
+    "@studio-freight/lenis": "^1.0.42",
+    "@tryghost/content-api": "^1.11.21",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "astro": "^4.16.9",
+    "astro-icon": "^1.1.2",
+    "gsap": "^3.12.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "sharp": "^0.33.5",
     "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.15",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14"
   }
 }

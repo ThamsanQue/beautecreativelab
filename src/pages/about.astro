@@ -1,0 +1,117 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import makeup3 from "../../public/images/makeup3.jpg";
+---
+
+<Layout title="About | Beauté Creative Lab">
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="px-4 md:px-8 lg:px-16 pt-24 pb-16">
+      <div class="max-w-6xl mx-auto">
+        <h1 class="font-light text-5xl md:text-7xl text-neutral-900 mb-8 heading-xl">
+          Between<br/>Authenticity
+        </h1>
+        <div class="grid md:grid-cols-2 gap-16 mt-16">
+          <div class="space-y-6">
+            <p class="text-neutral-600 text-lg leading-relaxed body-text">
+              At Beauté Creative Lab, we bridge the gap between beauty brands and their audience through authentic storytelling and strategic marketing.
+            </p>
+            <p class="text-neutral-600 text-lg leading-relaxed body-text">
+              Our approach moves beyond traditional marketing—we help beauty brands discover and amplify their unique voice in a crowded digital landscape.
+            </p>
+          </div>
+          <div>
+            <Image 
+              src={makeup3} 
+              alt="Aesthetic product photography" 
+              class="w-full h-[400px] object-cover bg-neutral-100 image-hover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="px-4 md:px-8 lg:px-16 py-24 bg-neutral-100">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16">
+          <div>
+            <h2 class="text-3xl font-light mb-8">Our Philosophy</h2>
+            <div class="space-y-6">
+              <p class="text-neutral-600 text-lg leading-relaxed">
+                We believe that authentic marketing isn't just about selling products—it's about creating meaningful connections between brands and their communities.
+              </p>
+              <p class="text-neutral-600 text-lg leading-relaxed">
+                Through strategic storytelling and organic engagement, we help beauty brands cultivate a presence that resonates with their ideal audience.
+              </p>
+            </div>
+          </div>
+          <div class="space-y-8">
+            <div class="border-l-2 border-neutral-300 pl-8">
+              <h3 class="text-xl font-light mb-4">Strategic Marketing</h3>
+              <p class="text-neutral-600">Crafting data-driven strategies that align with your brand's unique vision and values.</p>
+            </div>
+            <div class="border-l-2 border-neutral-300 pl-8">
+              <h3 class="text-xl font-light mb-4">Content Creation</h3>
+              <p class="text-neutral-600">Developing compelling narratives that showcase your products authentically.</p>
+            </div>
+            <div class="border-l-2 border-neutral-300 pl-8">
+              <h3 class="text-xl font-light mb-4">Community Building</h3>
+              <p class="text-neutral-600">Fostering genuine connections with your audience through meaningful engagement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="px-4 md:px-8 lg:px-16 py-24">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-light mb-16">Let's Create Together</h2>
+        <div class="grid md:grid-cols-2 gap-16">
+          <div class="space-y-6">
+            <p class="text-neutral-600 text-lg leading-relaxed">
+              Ready to elevate your beauty brand's presence? Let's explore how we can help you connect with your audience in meaningful ways.
+            </p>
+            <a 
+              href="/contact" 
+              class="inline-block mt-8 px-8 py-3 border border-neutral-900 text-neutral-900 hover:bg-neutral-900 hover:text-white transition-colors duration-300"
+            >
+              Get in Touch
+            </a>
+          </div>
+          <div class="space-y-4">
+            <p class="text-neutral-600">Email: hello@beautecreativelab.com</p>
+            <p class="text-neutral-600">Instagram: @beautecreativelab</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+
+<script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.from('.heading-xl', {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+      stagger: 0.2
+    });
+    
+    gsap.from('.body-text', {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.5,
+      ease: 'power3.out'
+    });
+    
+    </script>

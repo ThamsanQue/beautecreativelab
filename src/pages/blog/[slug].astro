@@ -1,0 +1,77 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import makeup5 from "../../../public/images/makeup5.jpg";
+
+
+// This will be replaced with data fetched from Ghost CMS
+const post = {
+  title: "How to Build an Authentic Beauty Brand",
+  date: "May 15, 2023",
+  author: {
+    name: "Jane Doe",
+    avatar: makeup5
+  },
+  content: `
+  <h2>Introduction</h2>
+  <p>Building an authentic beauty brand is essential in today's crowded market. Consumers are increasingly seeking brands that align with their values and offer genuine connections. In this post, we'll explore strategies to help you cultivate an authentic brand that resonates with your target audience.</p>
+
+  <h2>Defining Your Brand Identity</h2>
+  <p>The foundation of an authentic beauty brand starts with a clear and compelling brand identity. This encompasses your brand's mission, values, and unique positioning. Take the time to deeply understand your target audience, their pain points, and how your brand can uniquely address their needs.</p>
+
+  <h2>Embracing Transparency</h2>
+  <p>Transparency is key to building trust with your audience. Be open about your brand's story, manufacturing processes, ingredients, and any challenges you've faced. Sharing these aspects of your business helps customers feel a deeper connection with your brand.</p>
+
+  <h2>Cultivating Genuine Connections</h2>
+  <p>Rather than focusing solely on sales, prioritize building genuine relationships with your customers. Engage with them on social media, respond to comments and messages, and create content that adds value to their lives. This fosters a sense of community and loyalty around your brand.</p>
+
+  <h2>Conclusion</h2>
+  <p>Crafting an authentic beauty brand is an ongoing journey, but the rewards are well worth the effort. By staying true to your brand's identity, embracing transparency, and cultivating genuine connections, you can establish a loyal following and stand out in a crowded market.</p>
+`
+};
+---
+
+<Layout title={post.title}>
+  <main class="min-h-screen bg-[#faf9f7]">
+    <!-- Hero Section -->
+    <section class="px-4 md:px-8 lg:px-16 pt-24 pb-16">
+      <div class="max-w-6xl mx-auto">
+        <h1 class="font-light text-5xl md:text-7xl text-neutral-900 mb-4 heading-xl">{post.title}</h1>
+        <div class="flex items-center space-x-4 mb-8 body-text">
+          <Image src={post.author.avatar} alt={post.author.name} class="w-10 h-10 rounded-full object-cover" />
+          <p class="text-neutral-600 text-lg">{post.author.name}</p>
+          <p class="text-neutral-500 text-lg">{post.date}</p>
+        </div>
+        <div class="text-neutral-600 text-lg leading-relaxed body-text">
+          <div set:html={post.content}></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</Layout>
+
+
+<script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    
+    gsap.registerPlugin(ScrollTrigger);
+    
+    gsap.from('.heading-xl', {
+      y: 100,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+      stagger: 0.2
+    });
+    
+    gsap.from('.body-text', {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      delay: 0.5,
+      ease: 'power3.out'
+    });
+    
+    </script>

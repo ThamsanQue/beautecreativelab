@@ -1,26 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import makeup2 from '../../public/images/makeup2.jpg';
-import makeup from '../../public/images/makeup.jpg';
 
 const collections = [
   {
     title: 'Handcrafted Vase Collection',
-    image: makeup2,
+    image: '../../public/images/makeup2.jpg',
     description: 'A hand-made vase for a vintage interior design in brown shades in one of our rooms.',
     year: '2024'
   },
   {
     title: 'Modern Seating',
-    image: makeup,
+    image: '../../public/images/makeup.jpg',
     description: 'Contemporary leather seating that combines comfort with architectural design.',
     year: '2024'
   }
 ];
+
 ---
 
-<Layout title="Beauté Creative | Beauté Creative Lab">
+<Layout title="Beauté Creative Lab | Beauty Marketing Specialist">
   <div class="min-h-screen flex flex-col">
     <section class="pt-32 pb-16 px-6">
       <div class="max-w-7xl mx-auto">
@@ -29,23 +28,24 @@ const collections = [
             <div>
               <p class="text-sm mb-4">Design</p>
               <h1 class="heading-xl">
-                Authentic
+                Between
                 <br />
-                Allure
+                Feeling
               </h1>
             </div>
             
             <p class="body-text max-w-md">
-              Unlock powerful strategies to captivate your audience with authenticity. At Beauté Creative Lab, we help beauty brands create meaningful connections and lasting impact. Embrace organic growth and reveal your brand's true potential.
+              Unusual collections of interior design are part of a unique experience. 
+              Check out the collection of handcrafted items by local artisans.
             </p>
             
             <div class="flex justify-between items-center pt-8">
               <p class="text-sm">2024</p>
               <a 
-                href="/blog" 
+                href="/collections" 
                 class="text-sm hover:opacity-70 transition-opacity"
               >
-             The Latest in Beauty
+                The latest collections
               </a>
             </div>
           </div>
