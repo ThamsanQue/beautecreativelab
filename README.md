@@ -1,47 +1,41 @@
-# Astro Starter Kit: Minimal
+---
+title: "Beauté Creative Lab README"
+---
 
-```sh
-npm create astro@latest -- --template minimal
+# Beauté Creative Lab
+
+Beauté Creative Lab is a blog dedicated to empowering beauty brand owners with strategies to market and grow their brands authentically and organically. The blog serves as a resource for industry insights, marketing guidance, and best practices, helping beauty brands build meaningful connections with their audiences. It also serves as a client acquisition platform for a beauty marketing specialist, offering readers the expertise and support to elevate their brands.
+
+## Purpose
+
+Beauté Creative Lab aims to:
+
+- Provide beauty brand owners with effective, authentic marketing insights.
+- Showcase strategies to captivate and engage audiences in ways that resonate deeply.
+- Help brands achieve long-term, organic growth by embracing transparency and relatability.
+- Serve as a platform to connect beauty brands with expert marketing services.
+
+## Key Features
+
+- **Latest Insights & Trends**: Stay updated on the latest in beauty marketing and audience engagement.
+- **Actionable Strategies**: Practical guidance for implementing proven marketing tactics.
+- **Authentic Brand Building**: Emphasis on organic growth and sustainable brand impact.
+
+## Getting Started
+
+### Requirements
+
+- [Node.js](https://nodejs.org/) (v16+)
+- [pnpm](https://pnpm.io/) - package manager
+- [Astro](https://astro.build/) (v3.0.5)
+- [Ghost CMS SDK](https://ghost.org/docs/) for data management
+
+### Installation
+
+```bash
+git clone https://github.com/yourusername/beaute-creative-lab.git
+cd beaute-creative-lab
+pnpm install
+pnpm dev
+pnpm build
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
