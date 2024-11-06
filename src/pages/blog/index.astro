@@ -1,36 +1,12 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import { getPosts, getSettings } from "../../utils/api"; // Adjust this import based on your actual file structure
 import { Image } from "astro:assets";
-import makeup4 from "../../../public/images/makeup4.jpg";
+import { formatDate, getGhostImgPath } from "../../utils";
 
-
-// This will be replaced with your actual blog post data
-const blogPosts = [
-  {
-    slug: 'how-to-build-an-authentic-beauty-brand',
-    title: 'How to Build an Authentic Beauty Brand',
-    excerpt: 'Discover the key strategies for creating a beauty brand that resonates with your target audience.',
-    date: 'May 15, 2023'
-  },
-  {
-    slug: 'the-power-of-social-media-in-beauty-marketing',
-    title: 'The Power of Social Media in Beauty Marketing',
-    excerpt: 'Leveraging social platforms to drive organic growth and foster genuine connections with your community.',
-    date: 'April 20, 2023'
-  },
-  {
-    slug: 'content-ideas-to-showcase-your-beauty-products',
-    title: 'Content Ideas to Showcase Your Beauty Products',
-    excerpt: 'Innovative ways to create compelling content that highlights your products in an authentic way.',
-    date: 'March 28, 2023'
-  },
-  {
-    slug: 'building-a-loyal-following-for-your-beauty-brand',
-    title: 'Building a Loyal Following for Your Beauty Brand',
-    excerpt: 'Strategies for cultivating a dedicated community of customers who champion your brand.',
-    date: 'February 12, 2023'
-  }
-];
+// Fetch posts data
+const { posts } = await getPosts(); // Ensure this returns an array of posts
+const settings = await getSettings();
 ---
 
 <Layout title="Blog | Beauté Creative Lab">
@@ -38,11 +14,14 @@ const blogPosts = [
     <!-- Hero Section -->
     <section class="px-4 md:px-8 lg:px-16 pt-24 pb-16">
       <div class="max-w-6xl mx-auto">
-        <h1 class="font-light text-5xl md:text-7xl text-neutral-900 mb-8 heading-xl">
-          Beauty Insights<br/>& Strategies
+        <h1
+          class="font-light text-5xl md:text-7xl text-neutral-900 mb-8 heading-xl"
+        >
+          Beauty Insights<br />& Strategies
         </h1>
         <p class="text-neutral-600 text-lg leading-relaxed body-text">
-          Discover the latest tips, trends, and best practices for building an authentic and impactful beauty brand.
+          Discover the latest tips, trends, and best practices for building an
+          authentic and impactful beauty brand.
         </p>
       </div>
     </section>
@@ -51,45 +30,64 @@ const blogPosts = [
     <section class="px-4 md:px-8 lg:px-16 py-24 bg-neutral-100">
       <div class="max-w-6xl mx-auto">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {blogPosts.map((post) => (
-            <a href={`/blog/${post.slug}`} class="block hover:bg-white transition-colors duration-300 post-item">
-              <div class="overflow-hidden">
-                <Image src={makeup4} alt={post.title} class="w-full h-[200px] object-cover" />
-              </div>
-              <div class="p-6 space-y-4">
-                <h3 class="text-xl font-light text-neutral-900 heading-xl">{post.title}</h3>
-                <p class="text-neutral-600 text-lg leading-relaxed body-text">{post.excerpt}</p>
-                <p class="text-neutral-500 text-sm">{post.date}</p>
-              </div>
-            </a>
-          ))}
+          {
+            posts.map((post) => (
+              <a
+                href={`/blog/${post.slug}`}
+                class="block hover:bg-white transition-colors duration-300 post-item"
+              >
+                <div class="overflow-hidden">
+                  <Image
+                    src={`${getGhostImgPath(settings.url, post.feature_image || "", 800)}`}
+                    width={800}
+                    height={600}
+                    alt={post.title}
+                    class="w-full h-[200px] object-cover"
+                  />
+                </div>
+                <div class="p-6 space-y-4">
+                  <h3 class="text-xl font-light text-neutral-900 heading-xl">
+                    {post.title}
+                  </h3>
+                  <p class="text-neutral-600 text-lg leading-relaxed body-text">
+                    {post.excerpt}
+                  </p>
+                  <time
+                    class="text-neutral-500 text-sm"
+                    datetime={formatDate(post.published_at ?? "")}
+                  >
+                    {formatDate(post.published_at ?? "")}
+                  </time>
+                  {/* Make sure `published_at` is part of your post object */}
+                </div>
+              </a>
+            ))
+          }
         </div>
       </div>
     </section>
   </main>
-
 </Layout>
 
 <script>
-    import { gsap } from 'gsap';
-    import { ScrollTrigger } from 'gsap/ScrollTrigger';
-    
-    gsap.registerPlugin(ScrollTrigger);
-    
-    gsap.from('.heading-xl', {
-      y: 100,
-      opacity: 0,
-      duration: 1,
-      ease: 'power3.out',
-      stagger: 0.2
-    });
-    
-    gsap.from('.body-text', {
-      y: 30,
-      opacity: 0,
-      duration: 1,
-      delay: 0.5,
-      ease: 'power3.out'
-    });
-    
-    </script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from(".heading-xl", {
+    y: 100,
+    opacity: 0,
+    duration: 1,
+    ease: "power3.out",
+    stagger: 0.2,
+  });
+
+  gsap.from(".body-text", {
+    y: 30,
+    opacity: 0,
+    duration: 1,
+    delay: 0.5,
+    ease: "power3.out",
+  });
+</script>
