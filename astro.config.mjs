@@ -9,4 +9,9 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   output: "server",
   adapter: vercel(),
+  image: {
+    service: {
+      entrypoint: "astro/assets/services/sharp",
+    },
+  },
 });
