@@ -30,6 +30,13 @@ const authorImage = post.primary_author?.profile_image
 const publishDate = post.published_at
   ? new Date(post.published_at)
   : new Date();
+
+const sanitizedHtml = post.html.replace(
+  /<img[^>]+srcset="[^"]+"[^>]*>/g,
+  (match) => {
+    return match.replace(/ srcset="[^"]+"/, "");
+  }
+);
 ---
 
 <Layout title={post.title}>
@@ -83,7 +90,7 @@ const publishDate = post.published_at
       }
 
       <div class="prose prose-sm md:prose-lg max-w-none mx-auto">
-        <div set:html={post.html} />
+        <div set:html={sanitizedHtml} />
       </div>
 
       {

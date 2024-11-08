@@ -1,14 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import { getPosts, getSettings } from "../utils/api"; // Ensure the path is correct
+import { getPosts, getSettings } from "../utils/api";
 import { getGhostImgPath } from "../utils";
 
 const { posts } = await getPosts();
-const latestPosts = posts.slice(0, 2); // Get the latest 2 posts
+const latestPosts = posts.slice(0, 2);
 const settings = await getSettings();
-
-console.log(posts);
 ---
 
 <Layout title="Beauté Creative | Beauté Creative Lab">
