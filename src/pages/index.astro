@@ -7,6 +7,8 @@ import { getGhostImgPath } from "../utils";
 const { posts } = await getPosts();
 const latestPosts = posts.slice(0, 2); // Get the latest 2 posts
 const settings = await getSettings();
+
+console.log(posts);
 ---
 
 <Layout title="Beauté Creative | Beauté Creative Lab">
@@ -52,7 +54,11 @@ const settings = await getSettings();
                   onclick={`location.href = '/blog/${post.slug}'`}
                 >
                   <Image
-                    src={`${getGhostImgPath(settings.url, post.feature_image || "", 800)}`}
+                    src={getGhostImgPath(
+                      settings.url,
+                      post.feature_image || "",
+                      800
+                    )}
                     srcset={`
         ${getGhostImgPath(settings.url, post.feature_image || "", 300)} 300w, 
         ${getGhostImgPath(settings.url, post.feature_image || "", 600)} 600w
