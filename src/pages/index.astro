@@ -53,23 +53,19 @@ console.log(posts);
                   data-scroll-speed={index * 0.1}
                   onclick={`location.href = '/blog/${post.slug}'`}
                 >
-                  <Image
-                    src={getGhostImgPath(
-                      settings.url,
-                      post.feature_image || "",
-                      800
-                    )}
-                    srcset={`
-        ${getGhostImgPath(settings.url, post.feature_image || "", 300)} 300w, 
-        ${getGhostImgPath(settings.url, post.feature_image || "", 600)} 600w
-        ${getGhostImgPath(settings.url, post.feature_image || "", 1000)} 1000w
-        ${getGhostImgPath(settings.url, post.feature_image || "", 2000)} 2000w
-      `}
-                    alt={post.title}
-                    width={800}
-                    height={600}
-                    class="object-cover w-full h-full image-hover"
-                  />
+                  {post.feature_image && (
+                    <Image
+                      src={getGhostImgPath(
+                        settings.url,
+                        post.feature_image,
+                        200
+                      )}
+                      alt={post.title}
+                      width={200}
+                      height={200}
+                      class="object-cover w-full h-full image-hover"
+                    />
+                  )}
                   <div class="absolute bottom-0 left-0 right-0 p-6 text-white bg-gradient-to-t from-black/50 to-transparent">
                     <h3 class="text-lg font-bold">{post.title}</h3>
                     <p class="text-sm">{post.excerpt}</p>
