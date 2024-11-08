@@ -3,6 +3,11 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      lineClamp: {
+        1: "1",
+        2: "2",
+        3: "3",
+      },
       colors: {
         background: "#FAF7F2",
         primary: "#1A1A1A",
@@ -23,5 +28,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/line-clamp"),
+  ],
 };

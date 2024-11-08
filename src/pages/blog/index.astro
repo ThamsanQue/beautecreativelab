@@ -1,66 +1,90 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getPosts, getSettings } from "../../utils/api"; // Adjust this import based on your actual file structure
+import { getPosts, getSettings } from "../../utils/api";
 import { Image } from "astro:assets";
 import { formatDate, getGhostImgPath } from "../../utils";
 
 // Fetch posts data
-const { posts } = await getPosts(); // Ensure this returns an array of posts
+const { posts } = await getPosts();
 const settings = await getSettings();
+
+// SEO metadata
+const title = "Blog | Beauté Creative Lab";
+const description =
+  "Discover the latest insights and strategies for building an authentic and impactful beauty brand.";
 ---
 
-<Layout title="Blog | Beauté Creative Lab">
+<Layout title={title} description={description}>
   <main class="min-h-screen bg-[#faf9f7]">
     <!-- Hero Section -->
     <section class="px-4 md:px-8 lg:px-16 pt-24 pb-16">
       <div class="max-w-6xl mx-auto">
         <h1
-          class="font-light text-5xl md:text-7xl text-neutral-900 mb-8 heading-xl"
+          class="font-light text-4xl md:text-5xl lg:text-7xl text-neutral-900 mb-8 heading-xl"
         >
           Beauty Insights<br />& Strategies
         </h1>
-        <p class="text-neutral-600 text-lg leading-relaxed body-text">
-          Discover the latest tips, trends, and best practices for building an
-          authentic and impactful beauty brand.
+        <p
+          class="text-neutral-600 text-lg md:text-xl leading-relaxed max-w-2xl body-text"
+        >
+          {description}
         </p>
       </div>
     </section>
 
     <!-- Blog Posts Section -->
-    <section class="px-4 md:px-8 lg:px-16 py-24 bg-neutral-100">
+    <section class="px-4 md:px-8 lg:px-16 py-16 md:py-24 bg-neutral-100">
       <div class="max-w-6xl mx-auto">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {
             posts.map((post) => (
-              <a
-                href={`/blog/${post.slug}`}
-                class="block hover:bg-white transition-colors duration-300 post-item"
-              >
-                <div class="overflow-hidden">
-                  <Image
-                    src={`${getGhostImgPath(settings.url, post.feature_image || "", 800)}`}
-                    width={800}
-                    height={600}
-                    alt={post.title}
-                    class="w-full h-[200px] object-cover"
-                  />
-                </div>
-                <div class="p-6 space-y-4">
-                  <h3 class="text-xl font-light text-neutral-900 heading-xl">
-                    {post.title}
-                  </h3>
-                  <p class="text-neutral-600 text-lg leading-relaxed body-text">
-                    {post.excerpt}
-                  </p>
-                  <time
-                    class="text-neutral-500 text-sm"
-                    datetime={formatDate(post.published_at ?? "")}
-                  >
-                    {formatDate(post.published_at ?? "")}
-                  </time>
-                  {/* Make sure `published_at` is part of your post object */}
-                </div>
-              </a>
+              <article class="bg-white shadow-sm transition-all duration-300 hover:shadow-md post-item">
+                <a href={`/blog/${post.slug}`} class="block h-full">
+                  <div class="overflow-hidden">
+                    <Image
+                      src={getGhostImgPath(
+                        settings.url,
+                        post.feature_image || "",
+                        800
+                      )}
+                      width={800}
+                      height={600}
+                      alt={post.title}
+                      class="w-full h-[200px] object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  <div class="p-6 space-y-4">
+                    <h2 class="text-xl font-light text-neutral-900 line-clamp-2 heading-xl">
+                      {post.title}
+                    </h2>
+                    <p class="text-neutral-600 text-base leading-relaxed line-clamp-3 body-text">
+                      {post.excerpt}
+                    </p>
+                    <div class="flex items-center justify-between text-sm text-neutral-500">
+                      <time datetime={post.published_at}>
+                        {formatDate(post.published_at ?? "")}
+                      </time>
+                      <span class="inline-flex items-center text-neutral-900">
+                        Read more
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-4 w-4 ml-1"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </article>
             ))
           }
         </div>
@@ -69,6 +93,15 @@ const settings = await getSettings();
   </main>
 </Layout>
 
+<style>
+  .post-item {
+    transition: transform 0.3s ease-in-out;
+  }
+  .post-item:hover {
+    transform: translateY(-5px);
+  }
+</style>
+
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -76,7 +109,7 @@ const settings = await getSettings();
   gsap.registerPlugin(ScrollTrigger);
 
   gsap.from(".heading-xl", {
-    y: 100,
+    y: 50,
     opacity: 0,
     duration: 1,
     ease: "power3.out",
@@ -89,5 +122,18 @@ const settings = await getSettings();
     duration: 1,
     delay: 0.5,
     ease: "power3.out",
+  });
+
+  gsap.from(".post-item", {
+    y: 30,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".post-item",
+      start: "top bottom-=100px",
+      toggleActions: "play none none reverse",
+    },
   });
 </script>

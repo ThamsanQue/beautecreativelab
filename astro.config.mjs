@@ -10,6 +10,7 @@ export default defineConfig({
   output: "server",
   adapter: vercel(),
   image: {
-    domains: ["pexels.com"],
+    domains: ["pexels.com", "bcl.streetcrisis.online"],
+    remotePatterns: [{ protocol: "http" }],
   },
 });
