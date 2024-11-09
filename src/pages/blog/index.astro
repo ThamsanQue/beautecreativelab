@@ -15,7 +15,7 @@ const description =
 ---
 
 <Layout title={title} description={description}>
-  <main class="min-h-screen bg-[#faf9f7]">
+  <main class="min-h-screen">
     <!-- Hero Section -->
     <section class="px-4 md:px-8 lg:px-16 pt-24 pb-16">
       <div class="max-w-6xl mx-auto">
@@ -38,53 +38,37 @@ const description =
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
           {
             posts.map((post) => (
-              <article class="bg-white shadow-sm transition-all duration-300 hover:shadow-md post-item">
-                <a href={`/blog/${post.slug}`} class="block h-full">
-                  <div class="overflow-hidden">
+              <a
+                href={`/blog/${post.slug}`}
+                class="block hover:bg-white transition-colors duration-300 post-item"
+              >
+                <div class="overflow-hidden">
+                  {post.feature_image && (
                     <Image
-                      src={getGhostImgPath(
-                        settings.url,
-                        post.feature_image || "",
-                        800
-                      )}
+                      src={`${getGhostImgPath(settings.url, post.feature_image, 800)}`}
                       width={800}
                       height={600}
                       alt={post.title}
-                      class="w-full h-[200px] object-cover transition-transform duration-300 hover:scale-105"
+                      class="w-full h-[200px] object-cover"
                     />
-                  </div>
-                  <div class="p-6 space-y-4">
-                    <h2 class="text-xl font-light text-neutral-900 line-clamp-2 heading-xl">
-                      {post.title}
-                    </h2>
-                    <p class="text-neutral-600 text-base leading-relaxed line-clamp-3 body-text">
-                      {post.excerpt}
-                    </p>
-                    <div class="flex items-center justify-between text-sm text-neutral-500">
-                      <time datetime={post.published_at}>
-                        {formatDate(post.published_at ?? "")}
-                      </time>
-                      <span class="inline-flex items-center text-neutral-900">
-                        Read more
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          class="h-4 w-4 ml-1"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </span>
-                    </div>
-                  </div>
-                </a>
-              </article>
+                  )}
+                </div>
+                <div class="p-6 space-y-4">
+                  <h3 class="text-xl font-light text-neutral-900 heading-xl">
+                    {post.title}
+                  </h3>
+                  <p class="text-neutral-600 text-lg leading-relaxed body-text">
+                    {post.excerpt}
+                  </p>
+                  <time
+                    class="text-neutral-500 text-sm"
+                    datetime={formatDate(post.published_at ?? "")}
+                  >
+                    {formatDate(post.published_at ?? "")}
+                  </time>
+                  {/* Make sure `published_at` is part of your post object */}
+                </div>
+              </a>
             ))
           }
         </div>
@@ -93,47 +77,22 @@ const description =
   </main>
 </Layout>
 
-<style>
-  .post-item {
-    transition: transform 0.3s ease-in-out;
-  }
-  .post-item:hover {
-    transform: translateY(-5px);
-  }
-</style>
-
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-
   gsap.registerPlugin(ScrollTrigger);
-
   gsap.from(".heading-xl", {
-    y: 50,
+    y: 100,
     opacity: 0,
     duration: 1,
     ease: "power3.out",
     stagger: 0.2,
   });
-
   gsap.from(".body-text", {
     y: 30,
     opacity: 0,
     duration: 1,
     delay: 0.5,
     ease: "power3.out",
-  });
-
-  gsap.from(".post-item", {
-    y: 30,
-    opacity: 0,
-    duration: 0.8,
-    stagger: 0.1,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: ".post-item",
-      start: "top bottom-=100px",
-      toggleActions: "play none none reverse",
-    },
   });
 </script>
