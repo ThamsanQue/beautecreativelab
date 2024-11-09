@@ -74,10 +74,10 @@ const sanitizedHtml = post.html.replace(
         post.feature_image && (
           <figure class="mb-8 md:mb-12 -mx-4 md:mx-0">
             <Image
-              src={getGhostImgPath(settings.url, post.feature_image, 200)}
+              src={getGhostImgPath(settings.url, post.feature_image, 1200)}
               alt={post.feature_image_alt || post.title}
-              width={200}
-              height={200}
+              width={1200}
+              height={630}
               class=" object-cover w-full"
             />
             {post.feature_image_caption && (
